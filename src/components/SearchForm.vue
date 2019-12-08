@@ -1,18 +1,21 @@
 <template>
   <form role="search" class="search-form component">
       <input type="search" placeholder="Search for films" autofocus>
-      <input type="submit" value="Search">
+      <ButtonMain title="Search" type="submit" value="submit"/>
   </form>
 </template>
 
 <script>
+import ButtonMain from '@/components/ButtonMain.vue';
 // TODO: focus input on page change
 export default {
-
+    components: {
+        ButtonMain
+    }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 form {
     @include flex-align(center, center);
 
@@ -32,26 +35,6 @@ form {
 
             &:focus {
                 outline: none;
-            }
-        }
-
-        &[type=submit] {
-            height: 5rem;
-            background: $color-primary;
-            color: white;
-            border-radius: .5rem;
-            padding: 1.5rem;
-            margin-left: .5rem;
-            font-weight: 400;
-            transition: $base-transition;
-
-            &:hover, &:focus {
-                background: $color-secondary;
-            }
-
-            @include max(mobile) {
-                width: 100%;
-                margin: 1rem 0 0;
             }
         }
     }

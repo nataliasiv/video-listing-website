@@ -4,6 +4,7 @@
 
 @import './variables';
 
+// TODO: Why is this importing 3 times?
 html {
     font-size: 10px; // Set up for rem, 10px = 1rem
 }
@@ -13,7 +14,6 @@ body {
 }
   
 button {
-    background-color: transparent;
     border-width: 0;
     padding: 0;
     cursor: pointer;

@@ -4,10 +4,11 @@
 // Colors
 $bg-color-base: #FFFEFE;
 $bg-color-alt: #D8DFE0;
+$bg-color-accent: #3B8261;
 $color-primary: #010B10;
 $color-secondary: #1C768F;
 $color-tertiary: #4E5D61;
-$color-accent: #3B8261;
+$color-accent: #CC650C;
 $text-color-secondary: #757474;
 
 // Typography
@@ -17,9 +18,11 @@ $heading-sizes: (h1: 3.4rem, h2: 2.6rem, h3: 2.4rem, h4: 2rem, h5: 1.8rem, h6: 1
 // Spacing
 $base-spacer: 2rem;
 $base-component-height: 4.5rem;
+//TODO: More commonly used spacer is 3rem
 
 // Animations
 $base-transition: all .5s ease;
 
 // Other
 $img-border-radius: 3rem;
+$base-box-shadow: .2rem .2rem .2rem 0 $color-primary;

@@ -1,10 +1,17 @@
 <template>
-  <main>Details for {{ id }}</main>
+  <main>
+    <h1>Details for</h1>
+    <DetailsCard/>
+  </main>
 </template>
 
 <script>
+import DetailsCard from '@/components/DetailsCard.vue';
+
 export default {
-    props: ['id']
+    components: {
+      DetailsCard
+  }
 }
 </script>
 

@@ -3,18 +3,21 @@
       <h1>All Films</h1>
       <p class="subtitle">Browse and filter through all films</p>
       <SearchForm/>
-      <FullListings/>
+      <Sort/>
+      <FilmCard/>
     </main>
 </template>
 
 <script>
-import FullListings from '@/components/FullListings.vue';
 import SearchForm from '@/components/SearchForm.vue';
+import Sort from '@/components/Sort.vue';
+import FilmCard from '@/components/FilmCard.vue';
 
 export default {
     components: {
-        FullListings,
-        SearchForm
+        SearchForm,
+        Sort,
+        FilmCard
     }
 }
 </script>

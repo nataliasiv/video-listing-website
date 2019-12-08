@@ -15,7 +15,7 @@ export default {
 nav {
     display: flex;
     align-items: center;
-    background: $color-accent;
+    background: $bg-color-accent;
     min-height: $base-component-height;
     padding: 1rem $base-spacer;
 

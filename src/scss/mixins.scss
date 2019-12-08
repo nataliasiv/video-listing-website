@@ -1,6 +1,8 @@
 // Base mixins
 // Imported globally using style-resources-loader
 
+@import './media-queries';
+
 @mixin flex-align($align-items, $justify-content) {
     display: flex;
     align-items: $align-items;
@@ -15,4 +17,17 @@
 @mixin overflow($overflow-type, $overflow-value, $scrolling) {
     #{$overflow-type}: $overflow-value;
     -webkit-overflow-scrolling: $scrolling; // Not yet added by autoprefixer, for momentum scrolling on iOS
+}
+
+@mixin base-grid($grid-gap, $laptop-grid) {
+    display: grid;
+
+    @include min(tablet) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: $grid-gap;
+      }
+    
+      @include min(laptop) {
+        grid-template-columns: $laptop-grid;
+      }
 }
