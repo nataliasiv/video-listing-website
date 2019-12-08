@@ -1,31 +1,55 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <Nav/>
     <router-view/>
+    <Footer/>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import Nav from '@/components/Nav.vue';
+import Footer from '@/components/Footer.vue';
+
+export default {
+  components: {
+    Nav,
+    Footer
+  }
 }
+</script>
 
-#nav {
-  padding: 30px;
+<style lang="scss">
+body {
+  color: $color-primary;
+  line-height: 1.5;
+  background: $bg-color-base;
+  font: {
+    family: 'Source Sans Pro', $fallback-fonts;
+    size: 1.6rem;
+    weight: 300;
+  }
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+  .component {
+    margin-top: 6rem;
+  }
 
-    &.router-link-exact-active {
-      color: #42b983;
+  main {
+    margin: $base-spacer*2 auto $base-spacer*3;
+    height: 100%;
+    width: 75%;
+    max-width: 144rem;
+
+      a:not(.film-details) {
+        text-decoration: underline;
+
+      &:hover, &:active, &:focus {
+        color: $color-secondary;
+      }
+    }
+
+    .subtitle {
+      font-size: map-get($heading-sizes, h4);
+      color: $text-color-secondary;
     }
   }
 }
