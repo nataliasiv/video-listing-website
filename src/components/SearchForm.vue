@@ -6,6 +6,7 @@
 </template>
 
 <script>
+// TODO: focus input on page change
 export default {
 
 }

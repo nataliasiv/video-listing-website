@@ -19,6 +19,7 @@ export default {
 </script>
 
 <style lang="scss">
+// TODO: SCSS formatter
 body {
   color: $color-primary;
   line-height: 1.5;

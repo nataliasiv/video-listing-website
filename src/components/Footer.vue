@@ -3,7 +3,6 @@
       <p>Developed by Natalia Sivackova for TenTwenty</p>
       <ul>
           <li><span>Email:</span><a href="mailto:n.sivackova@gmail.com">n.sivackova@gmail.com</a></li>
-          <li><span>Tel:</span>+356 99 763 953</li>
       </ul>
   </footer>
 </template>
@@ -32,10 +31,6 @@ footer {
         @include min(tablet) {
             display: flex;
             margin: unset;
-        }
-
-        li:first-of-type {
-            margin-right: $base-spacer;
         }
 
         a {
