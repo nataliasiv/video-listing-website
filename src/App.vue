@@ -48,6 +48,10 @@ body {
       }
     }
 
+    p {
+      margin: 1rem 0 0;
+    }
+
     .subtitle {
       font-size: map-get($heading-sizes, h4);
       color: $text-color-secondary;

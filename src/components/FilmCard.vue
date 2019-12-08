@@ -2,7 +2,7 @@
   <div class="film-cards component">
     <h2>{{ title }}</h2>
     <router-link :to="{name: 'listing-details', params: { id: latest.id }}" class="film-details">
-      <img v-if=latest.poster_path :src=latest.poster_path alt="Latest film poster">
+      <img v-if=latest.poster_path :src="'https://image.tmdb.org/t/p/w300/au81EJYbdHo3nK0D6pNfQfMLgcr.jpg' + latest.poster_path" alt="Latest film poster" class="poster" width="300">
       <div v-else class="poster-default">
         <img src="@/assets/lens.svg" alt="No film poster" width="150" height="150">
       </div>
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import LatestService from '@/services/LatestService.js'
 
 export default {
     props: {
@@ -27,15 +27,11 @@ export default {
       }
     },
     created() {
-    axios
-    .get('https://api.themoviedb.org/3/movie/latest?api_key=13aeb3fe065f4b10d4cacbafd800335b')
-    .then(reponse => {
-      console.log(this.latest = reponse.data)
-    })
-    .catch(error => {
-      console.log('Error' + error)
-    })
-  }
+      LatestService.getLatest()
+      .then(reponse => {
+          this.latest = reponse.data
+        })
+    }
 }
 </script>
 
@@ -75,6 +71,13 @@ export default {
   @include flex-direction(column);
   margin-top: 3rem;
 
+  &:hover {
+
+    .poster-default img {
+      transform: scale(2) rotate(50deg);
+    }
+  }
+
   span {
     margin-left: .8rem;
     font: {
@@ -92,12 +95,20 @@ export default {
     color: $text-color-secondary;
   }
 
+  .poster {
+    border-radius: $img-border-radius;
+  }
+
   .poster-default {
     @include flex-align(center, center);
-    width: 100%;
     height: 30rem;
     background: $bg-color-alt;
+    overflow: hidden;
     border-radius: $img-border-radius;
+
+    img {
+      transition: $base-transition;
+    }
   }
 }
 </style>
