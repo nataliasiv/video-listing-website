@@ -1,6 +1,6 @@
 <template>
     <div class="poster-default">
-        <img v-if=latest.poster_path :src="'https://image.tmdb.org/t/p/w500' + latest.poster_path" alt="Film poster" class="poster" width="300">
+        <img v-if=films.poster_path :src="'https://image.tmdb.org/t/p/w500' + films.poster_path" alt="Film poster" class="poster" width="300">
         <img v-else :src="img" alt="No film poster" width="150" height="150" class="default-img">
     </div>
 </template>
@@ -13,14 +13,13 @@ export default {
     data() {
       return {
         img: lens,
-        latest: []
+        films: []
       }
     },
     created() {
-      LatestService.getLatest()
-      .then(reponse => {
-          this.latest = reponse.data
-        })
+      LatestService.getUpcoming()
+      .then(reponse => { console.log(this.films = reponse.data.results) })
+      .catch(error => { console.log('Error' + error) })
     }
 }
 </script>

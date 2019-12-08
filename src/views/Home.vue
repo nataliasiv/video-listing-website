@@ -4,7 +4,7 @@
     <p class="subtitle">Check out your favourite films here!</p>
     <p>Browse and filter through <router-link :to="{name: 'all-listings'}">all film listings</router-link> or search for a film below.</p>
     <SearchForm/>
-    <FilmCard title="Recently Added"/>
+    <FilmCard title="Latest Films"/>
   </main>
 </template>
 

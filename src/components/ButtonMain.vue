@@ -8,12 +8,12 @@ export default {
         title: String,
         type: String,
         value: String
-    }
+    },
 }
 </script>
 
-<style lang="scss" scoped>
-button {
+<style lang="scss">
+main button {
     height: 5rem;
     background: $color-primary;
     color: white;
@@ -29,10 +29,6 @@ button {
 
     &:hover, &:focus {
         background: $color-secondary;
-    }
-
-    &.btn-trailer {
-        margin: 3rem 0 0;
     }
 
     @include max(mobile) {

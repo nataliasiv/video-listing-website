@@ -1,11 +1,11 @@
 <template>
   <section class="film-cards component">
     <h2>{{ title }}</h2>
-    <router-link :to="{name: 'listing-details', params: { id: latest.id }}" class="film-details">
+    <router-link v-for="film in films" :key="film.id" :to="{name: 'listing-details', params: { id: film.id }}" class="film-details">
       <Poster/>
-      <h3>{{ latest.title }}<span v-if="latest.original_language">({{ latest.original_language }})</span></h3>
-      <p v-if="latest.overview">{{ latest.overview }}</p>
-      <p v-if="latest.release_date" class="release-date">Original release: {{ latest.release_date }}</p>
+      <h3>{{ film.title }}<span v-if="film.original_language">({{ film.original_language }})</span></h3>
+      <p v-if="film.overview">{{ film.overview }}</p>
+      <p v-if="film.release_date" class="release-date">Original release: {{ film.release_date }}</p>
     </router-link>
   </section>
 </template>
@@ -24,12 +24,13 @@ export default {
     },
     data() {
       return {
-        latest: [],
+        films: [],
       }
     },
     created() {
-      LatestService.getLatest()
-      .then(reponse => { this.latest = reponse.data })
+      LatestService.getUpcoming()
+      .then(reponse => { this.films = reponse.data.results })
+      .catch(error => { console.log('Error' + error) })
     }
 }
 </script>
@@ -60,6 +61,7 @@ export default {
 
 .film-details {
   @include flex-direction(column);
+  align-self: flex-start;
 
   span {
     margin-left: .8rem;

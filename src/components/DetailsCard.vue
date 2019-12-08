@@ -10,45 +10,29 @@
       <p v-if="details.overview">{{ details.overview }}</p>
       <p v-if="details.release_date" class="release-date">Original release: {{ details.release_date }}</p>
     </div>
-    <ButtonMain v-if="video" @click="openTrailer" title="Watch Trailer" type="button" class="btn-trailer"/>
-    <iframe v-if="video.site === 'YouTube'" :src="'https://www.youtube.com/embed/' + video.key + '?autoplay=' + {'1': autoplay}" :class="{visible: visibleTrailer}" width="720" height="405" allow="autoplay;" frameborder="0" allowfullscreen></iframe>
+    <WatchTrailer/>
   </section>
 </template>
 
 <script>
 import axios from 'axios';
 import Poster from '@/components/Poster.vue';
-import ButtonMain from '@/components/ButtonMain.vue';
+import WatchTrailer from '@/components/WatchTrailer.vue';
 
 export default {
     components: {
       Poster,
-      ButtonMain
+      WatchTrailer
     },
     data() {
       return {
-        visibleTrailer: false,
-        autoplay: false,
-        details: [],
-        video: []
-      }
-    },
-    methods: {
-      openTrailer() {
-        this.visibleTrailer = !this.visibleTrailer;
-        this.autoplay = !this.autoplay;
+        details: []
       }
     },
     created() {
       axios
       .get('https://api.themoviedb.org/3/movie/550?api_key=13aeb3fe065f4b10d4cacbafd800335b')
       .then(reponse => { this.details = reponse.data })
-      .catch(error => { console.log('Error' + error) })
-    },
-    beforeMount() {
-      axios
-      .get('https://api.themoviedb.org/3/movie/550/videos?api_key=13aeb3fe065f4b10d4cacbafd800335b')
-      .then(reponse => { this.video = reponse.data.results[0] })
       .catch(error => { console.log('Error' + error) })
     }
 }
@@ -70,20 +54,16 @@ export default {
     width: 100%;
     justify-self: center;
   }
-}
 
-iframe {
-  display: none;
-
-  &.visible {
-    display: block;
+  p {
+    line-height: 1.75;
   }
 }
 
 .genre {
   display: flex;
   flex-wrap: wrap;
-  margin: 1rem 0;
+  margin: 1rem 0 2rem;
     
     p {
       background: $color-accent;
