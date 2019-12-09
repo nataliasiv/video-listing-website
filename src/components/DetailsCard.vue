@@ -15,9 +15,9 @@
 </template>
 
 <script>
-import axios from 'axios';
-import Poster from '@/components/Poster.vue';
-import WatchTrailer from '@/components/WatchTrailer.vue';
+import Poster from '@/components/Poster.vue'
+import WatchTrailer from '@/components/WatchTrailer.vue'
+import axios from 'axios'
 
 export default {
     components: {
@@ -31,8 +31,8 @@ export default {
     },
     created() {
       axios
-      .get('https://api.themoviedb.org/3/movie/550?api_key=13aeb3fe065f4b10d4cacbafd800335b')
-      .then(reponse => { this.details = reponse.data })
+      .get('https://api.themoviedb.org/3/movie/' + this.filmId +'?api_key=13aeb3fe065f4b10d4cacbafd800335b&append_to_response=videos,images')
+      .then(reponse => { console.log(this.details = reponse.data.results) })
       .catch(error => { console.log('Error' + error) })
     }
 }

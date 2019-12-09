@@ -1,47 +1,33 @@
 <template>
-    <div class="poster-default">
-        <img v-if=films.poster_path :src="'https://image.tmdb.org/t/p/w500' + films.poster_path" alt="Film poster" class="poster" width="300">
-        <img v-else :src="img" alt="No film poster" width="150" height="150" class="default-img">
+    <div class="poster">
+        <!-- Decided to use the 500w posters here because the image is sharper -->
+        <!-- For a small-scale site like this one it shouldn't cause performance issues, but for larger sites I would consider other options (lazy loading or smaller images) -->
+        <img class="poster__image" v-if=posterPath :src="'https://image.tmdb.org/t/p/w500' + posterPath" alt="Film poster" width="300">
+        <!-- Backup image in case there is no poster -->
+        <img class="poster__image--default" v-else :src="img" alt="No film poster" width="150" height="150">
     </div>
 </template>
 
 <script>
-import LatestService from '@/services/LatestService.js'
 import lens from '@/assets/lens.svg'
 
 export default {
-    data() {
-      return {
-        img: lens,
-        films: []
-      }
-    },
-    created() {
-      LatestService.getUpcoming()
-      .then(reponse => { console.log(this.films = reponse.data.results) })
-      .catch(error => { console.log('Error' + error) })
+  data() {
+    return {
+      img: lens
     }
+  },
+  props: {
+    posterPath: String
+  }
 }
 </script>
 
 <style lang="scss">
-.film-details:hover {
-
-    .default-img {
-      transform: scale(2) rotate(50deg);
-    }
-}
-
 .poster {
-    border-radius: $img-border-radius;
-    width: 100%;
-    object-fit: cover;
-}
-
-.poster-default {
     @include flex-align(center, center);
-    height: 30rem;
-    max-width: 30rem;
+    max-height: 37rem;
+    max-width: 27rem;
     background: $bg-color-alt;
     overflow: hidden;
     border-radius: $img-border-radius;
@@ -51,5 +37,22 @@ export default {
     img {
       transition: $base-transition;
     }
+}
+
+.card__details:hover {
+
+    .poster__image--default {
+      transform: scale(2) rotate(50deg);
+    }
+
+    .poster__image {
+      transform: scale(1.1);
+    }
+}
+
+.poster__image {
+    border-radius: $img-border-radius;
+    width: 100%;
+    object-fit: cover;
 }
 </style>

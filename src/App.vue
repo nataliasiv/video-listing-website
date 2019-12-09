@@ -19,7 +19,6 @@ export default {
 </script>
 
 <style lang="scss">
-// TODO: SCSS formatter
 body {
   color: $color-primary;
   line-height: 1.5;
@@ -40,8 +39,8 @@ body {
     width: 75%;
     max-width: 144rem;
 
-      a:not(.film-details) {
-        text-decoration: underline;
+    a:not(.card__details) {
+      text-decoration: underline;
 
       &:hover, &:active, &:focus {
         color: $color-secondary;
@@ -52,7 +51,7 @@ body {
       margin: 1rem 0 0;
     }
 
-    .subtitle {
+    .details__subtitle {
       font-size: map-get($heading-sizes, h4);
       color: $text-color-secondary;
     }

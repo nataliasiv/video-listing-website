@@ -1,6 +1,6 @@
 <template>
     <div class="component">
-        Hello
+        Sort feature
     </div>
 </template>
 

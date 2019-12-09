@@ -1,21 +1,28 @@
 <template>
   <main>
-    <h1>Film Listings</h1>
-    <p class="subtitle">Check out your favourite films here!</p>
-    <p>Browse and filter through <router-link :to="{name: 'all-listings'}">all film listings</router-link> or search for a film below.</p>
-    <SearchForm/>
-    <FilmCard title="Latest Films"/>
+    <div class="details">
+      <h1>Film Listings</h1>
+      <p class="details__subtitle">Don't know what to watch next? Browse or search below!</p>
+    </div>
+    <Search/>
+    <FilmCard title="Browse Through Recent Films" releaseMessage="Released on" scrollType="horizontal"/>
   </main>
 </template>
 
 <script>
-import SearchForm from '@/components/SearchForm.vue'
+import Search from '@/components/Search.vue'
 import FilmCard from '@/components/FilmCard.vue'
 
 export default {
   components: {
-    SearchForm,
+    Search,
     FilmCard
   }
 }
 </script>
+
+<style lang="scss">
+.details {
+  text-align: center;
+}
+</style>

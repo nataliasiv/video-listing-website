@@ -1,4 +1,5 @@
 <template>
+<!-- TODO: USE V-SHOW ON IFRAME -->
     <div v-if="video">
         <button @click="toggleTrailer" type="button" class="btn-trailer">Watch Trailer</button>
         <div @click="toggleTrailer" :class="{visible: visibleTrailer}">

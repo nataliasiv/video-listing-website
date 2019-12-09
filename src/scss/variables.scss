@@ -14,12 +14,11 @@ $text-color-secondary: #757474;
 
 // Typography
 $fallback-fonts: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
-$heading-sizes: (h1: 3.4rem, h2: 2.6rem, h3: 2.4rem, h4: 2rem, h5: 1.8rem, h6: 1.6rem);
+$heading-sizes: (h1: 4rem, h2: 2.6rem, h3: 2.4rem, h4: 2rem, h5: 1.8rem, h6: 1.6rem);
 
 // Spacing
 $base-spacer: 2rem;
 $base-component-height: 4.5rem;
-//TODO: More commonly used spacer is 3rem
 
 // Animations
 $base-transition: all .5s ease;

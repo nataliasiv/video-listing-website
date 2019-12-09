@@ -5,12 +5,6 @@
     </nav>
 </template>
 
-<script>
-export default {
-
-}
-</script>
-
 <style lang="scss">
 nav {
     display: flex;
@@ -24,7 +18,7 @@ nav {
         text-decoration: none;
         margin-right: 4rem;
         font: {
-            size: map-get($heading-sizes, h6);
+            size: map-get($heading-sizes, h4);
             weight: 400;
         }
 

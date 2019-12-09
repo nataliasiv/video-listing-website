@@ -1,18 +1,20 @@
 <template>
-  <section class="film-cards component">
+  <div class="component">
     <h2>{{ title }}</h2>
-    <router-link v-for="film in films" :key="film.id" :to="{name: 'listing-details', params: { id: film.id }}" class="film-details">
-      <Poster/>
-      <h3>{{ film.title }}<span v-if="film.original_language">({{ film.original_language }})</span></h3>
-      <p v-if="film.overview">{{ film.overview }}</p>
-      <p v-if="film.release_date" class="release-date">Original release: {{ film.release_date }}</p>
-    </router-link>
-  </section>
+    <section class="card" :scrollType="scrollType">
+      <router-link class="card__details" v-for="film in films" :key="film.id" :to="{name: 'listing-details', params: { id: film.id }}">
+        <Poster :posterPath="film.poster_path"/>
+        <h3>{{ film.title }}<span v-if="film.original_language">({{ film.original_language }})</span></h3>
+        <p v-if="film.overview">{{ film.overview }}</p>
+        <p class="card__release-date" v-if="film.release_date">{{ releaseMessage }}: {{ film.release_date }}</p>
+      </router-link>
+    </section>
+  </div>
 </template>
 
 <script>
 import Poster from '@/components/Poster.vue'
-import LatestService from '@/services/LatestService.js'
+import FilmService from '@/services/FilmService.js'
 
 export default {
     components: {
@@ -20,7 +22,8 @@ export default {
     },
     props: {
       title: String,
-      id: Number
+      releaseMessage: String,
+      scrollType: String
     },
     data() {
       return {
@@ -28,7 +31,7 @@ export default {
       }
     },
     created() {
-      LatestService.getUpcoming()
+      FilmService.getRecent()
       .then(reponse => { this.films = reponse.data.results })
       .catch(error => { console.log('Error' + error) })
     }
@@ -36,32 +39,39 @@ export default {
 </script>
 
 <style lang="scss">
-.film-cards {
+.card[scrolltype="vertical"] {
   @include base-grid(3rem, repeat(3, 1fr));
   align-items: center;
 
-  h2 {
-
-    @include min(tablet) {
-      grid-column: 1/3;
-    }
-    
-    @include min(laptop) {
-      grid-column: 1/4;
-    }
+  .card__details {
+    align-self: flex-start;
   }
+}
 
-  .film-details:first-of-type {
+.card[scrolltype="horizontal"] {
+  @include min(tablet) {
+    display: flex;
+    overflow: scroll;
+    // Transforming the cards to get the scrollbar on top 
+    // (Makes the horizontal scroll a bit more user friendly)
+    transform:rotateX(180deg);
 
-    @include min(tablet) {
-      grid-column: 1/2;
+    .card__details {
+      padding-right: 4rem;
+      min-width: 27rem;
+      transform:rotateX(180deg);
     }
   }
 }
 
-.film-details {
+.component h2 {
+  @include min(tablet) {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.card__details {
   @include flex-direction(column);
-  align-self: flex-start;
 
   span {
     margin-left: .8rem;
@@ -76,8 +86,8 @@ export default {
   }
 }
 
-.release-date {
-    margin-top: $base-spacer;
-    color: $text-color-secondary;
+.card__release-date {
+  margin-top: $base-spacer;
+  color: $text-color-secondary;
 }
 </style>
