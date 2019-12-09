@@ -1,48 +1,39 @@
 <template>
   <section class="details-card">
-    <Poster/>
-    <div class="details">
+    <Poster :posterPath="details.poster_path"/>
+    <div class="details-card__details">
       <a v-if="details.homepage" :href="details.homepage"><h3>{{ details.title }}</h3></a>
-      <p class="subtitle" v-if="details.tagline">{{ details.tagline }}</p>
-      <div v-if="details.genres" class="genre">
+      <p class="details-card__subtitle" v-if="details.tagline">{{ details.tagline }}</p>
+      <div class="details-card__genre" v-if="details.genres">
         <p v-for="genre in details.genres" :key="genre.key">{{ genre.name }}</p>
       </div>
       <p v-if="details.overview">{{ details.overview }}</p>
-      <p v-if="details.release_date" class="release-date">Original release: {{ details.release_date }}</p>
+      <p class="details-card__release-date" v-if="details.release_date">Original release: {{ details.release_date }}</p>
     </div>
-    <WatchTrailer/>
+    <WatchTrailer :videos="details.videos"/>
   </section>
 </template>
 
 <script>
 import Poster from '@/components/Poster.vue'
 import WatchTrailer from '@/components/WatchTrailer.vue'
-import axios from 'axios'
 
 export default {
     components: {
       Poster,
       WatchTrailer
     },
-    data() {
-      return {
-        details: []
-      }
-    },
-    created() {
-      axios
-      .get('https://api.themoviedb.org/3/movie/' + this.filmId +'?api_key=13aeb3fe065f4b10d4cacbafd800335b&append_to_response=videos,images')
-      .then(reponse => { console.log(this.details = reponse.data.results) })
-      .catch(error => { console.log('Error' + error) })
+    props: {
+      details: Object
     }
 }
 </script>
 
 <style lang="scss">
 .details-card {
-  @include base-grid(6rem, 30rem 1fr);
+  @include base-grid(6rem, 27rem 1fr);
 
-  .details {
+  &__details {
     margin-top: 3rem;
 
     @include min(tablet) {
@@ -50,17 +41,12 @@ export default {
     }
   }
 
-  .poster-default {
-    width: 100%;
-    justify-self: center;
-  }
-
   p {
     line-height: 1.75;
   }
 }
 
-.genre {
+.details-card__genre {
   display: flex;
   flex-wrap: wrap;
   margin: 1rem 0 2rem;

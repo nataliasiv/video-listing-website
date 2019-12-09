@@ -26,6 +26,7 @@ export default {
 <style lang="scss">
 .poster {
     @include flex-align(center, center);
+    min-height: 30rem; // For default poster image
     max-height: 37rem;
     max-width: 27rem;
     background: $bg-color-alt;
@@ -42,7 +43,7 @@ export default {
 .card__details:hover {
 
     .poster__image--default {
-      transform: scale(2) rotate(50deg);
+      transform: scale(1.8) rotate(50deg);
     }
 
     .poster__image {

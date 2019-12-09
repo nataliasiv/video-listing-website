@@ -1,16 +1,14 @@
 import axios from 'axios';
 
+const apiClient = axios.create({
+    baseURL: 'https://api.themoviedb.org/3/movie/',
+})
+
 export default {
     getRecent() {
-        return recentFilms
+        return apiClient.get('upcoming?api_key=13aeb3fe065f4b10d4cacbafd800335b&language=en-US&page=1&append_to_response=images')
     },
-    getDetails() {
-        return filmDetails
+    getDetails(id) {
+        return apiClient.get(id + '?api_key=13aeb3fe065f4b10d4cacbafd800335b&append_to_response=videos,images')
     }
 }
-
-let recentFilms = axios
-.get('https://api.themoviedb.org/3/movie/upcoming?api_key=13aeb3fe065f4b10d4cacbafd800335b&language=en-US&page=1&append_to_response=images', 'https://api.themoviedb.org/3/movie/upcoming?api_key=13aeb3fe065f4b10d4cacbafd800335b&language=en-US&page=2&append_to_response=images')
-
-let filmDetails = axios
-.get('https://api.themoviedb.org/3/movie/550?api_key=13aeb3fe065f4b10d4cacbafd800335b&append_to_response=videos,images')

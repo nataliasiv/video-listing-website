@@ -5,6 +5,10 @@
       <router-link class="card__details" v-for="film in films" :key="film.id" :to="{name: 'listing-details', params: { id: film.id }}">
         <Poster :posterPath="film.poster_path"/>
         <h3>{{ film.title }}<span v-if="film.original_language">({{ film.original_language }})</span></h3>
+        <div class="card__rating" v-if="film.vote_average">
+          <img :src="icon" alt="star" width="25" height="25">
+          <p>{{ film.vote_average }} / 10</p>
+        </div>
         <p v-if="film.overview">{{ film.overview }}</p>
         <p class="card__release-date" v-if="film.release_date">{{ releaseMessage }}: {{ film.release_date }}</p>
       </router-link>
@@ -15,20 +19,23 @@
 <script>
 import Poster from '@/components/Poster.vue'
 import FilmService from '@/services/FilmService.js'
+import star from '@/assets/star.svg';
 
 export default {
     components: {
-      Poster,
-    },
-    props: {
-      title: String,
-      releaseMessage: String,
-      scrollType: String
+      Poster
     },
     data() {
       return {
         films: [],
+        icon: star
       }
+    },
+    props: {
+      title: String,
+      releaseMessage: String,
+      scrollType: String,
+      sort: String
     },
     created() {
       FilmService.getRecent()
@@ -83,6 +90,17 @@ export default {
 
   h3 {
     margin-top: 2rem;
+  }
+}
+
+.card__rating {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  font-weight: 400;
+
+  img {
+    margin-right: 1rem;
   }
 }
 

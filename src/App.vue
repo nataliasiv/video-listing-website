@@ -55,6 +55,29 @@ body {
       font-size: map-get($heading-sizes, h4);
       color: $text-color-secondary;
     }
+
+    input[type=submit], button {
+      height: 6rem;
+      background: $color-primary;
+      color: white;
+      border-radius: .5rem;
+      padding: 2rem;
+      margin-left: .5rem;
+      transition: $base-transition;
+      font: {
+          weight: 400;
+          size: 1.6rem;
+      }
+
+      &:hover, &:focus {
+          background: $color-secondary;
+      }
+
+      @include max(mobile) {
+          width: 100%;
+          margin: 1rem 0 0;
+      }
+    }
   }
 }
 </style>

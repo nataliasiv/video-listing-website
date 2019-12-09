@@ -1,37 +1,31 @@
 <template>
-<!-- TODO: USE V-SHOW ON IFRAME -->
-    <div v-if="video">
+    <div v-if="videos.results[0]">
         <button @click="toggleTrailer" type="button" class="btn-trailer">Watch Trailer</button>
         <div @click="toggleTrailer" :class="{visible: visibleTrailer}">
             <span class="trailer-close-instructions">Click anywhere outside the trailer to close.</span>
-            <iframe v-if="video.site === 'YouTube'" :src="'https://www.youtube.com/embed/' + video.key + '?autoplay=' + autoplay" width="720" height="405" allow="autoplay;" frameborder="0" allowfullscreen></iframe>
+            <iframe v-if="videos.results[0].site === 'YouTube'" :src="'https://www.youtube.com/embed/' + videos.results[0].key + '?autoplay=' + autoplay" width="720" height="405" allow="autoplay;" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
-    data() {
-      return {
-        visibleTrailer: false,
-        autoplay: false,
-        video: []
-      }
-    },
-    methods: {
-      toggleTrailer() {
-        this.visibleTrailer = !this.visibleTrailer;
-        this.autoplay = !this.autoplay;
-      }
-    },
-    created() {
-      axios
-      .get('https://api.themoviedb.org/3/movie/550/videos?api_key=13aeb3fe065f4b10d4cacbafd800335b')
-      .then(reponse => { console.log(this.video = reponse.data.results[0]) })
-      .catch(error => { console.log('Error' + error) })
+  data() {
+    return {
+      visibleTrailer: false,
+      autoplay: false,
+      video: []
     }
+  },
+  props: {
+    videos: Object
+  },
+  methods: {
+    toggleTrailer() {
+      this.visibleTrailer = !this.visibleTrailer;
+      this.autoplay = !this.autoplay;
+    }
+  }
 }
 </script>
 

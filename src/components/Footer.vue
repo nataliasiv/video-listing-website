@@ -1,9 +1,7 @@
 <template>
   <footer>
       <p>Developed by Natalia Sivackova for TenTwenty</p>
-      <ul>
-          <li><span>Email:</span><a href="mailto:n.sivackova@gmail.com">n.sivackova@gmail.com</a></li>
-      </ul>
+      <p><span>Email:</span><a href="mailto:n.sivackova@gmail.com">n.sivackova@gmail.com</a></p>
   </footer>
 </template>
 
@@ -19,26 +17,17 @@ footer {
         min-height: $base-component-height;
     }
 
-    ul {
-        margin-top: 1rem;
+    a {
+        color: inherit;
 
-        @include min(tablet) {
-            display: flex;
-            margin: unset;
+        &:hover, &:active, &:focus {
+            text-decoration: underline;
         }
+    }
 
-        a {
-            color: inherit;
-
-            &:hover, &:active, &:focus {
-                text-decoration: underline;
-            }
-        }
-
-        span {
-            font-weight: 400;
-            margin-right: .5rem;
-        }
+    span {
+        font-weight: 400;
+        margin-right: .5rem;
     }
 }
 </style>
