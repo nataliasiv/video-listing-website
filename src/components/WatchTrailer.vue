@@ -2,7 +2,7 @@
     <div v-if="videos.results[0]">
         <button @click="toggleTrailer" type="button" class="btn-trailer">Watch Trailer</button>
         <div @click="toggleTrailer" :class="{visible: visibleTrailer}">
-            <span class="trailer-close-instructions">Click anywhere outside the trailer to close.</span>
+            <span class="trailer-close-instructions">Click anywhere outside the trailer to return to the details page.</span>
             <iframe v-if="videos.results[0].site === 'YouTube'" :src="'https://www.youtube.com/embed/' + videos.results[0].key + '?autoplay=' + autoplay" width="720" height="405" allow="autoplay;" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>

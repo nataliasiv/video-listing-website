@@ -5,7 +5,7 @@
       <p class="details__subtitle">Don't know what to watch next? Browse or search below!</p>
     </div>
     <Search/>
-    <FilmCard title="Browse Through Recent Films" releaseMessage="Released on" scrollType="horizontal"/>
+    <FilmCard title="Browse Recent Films" releaseMessage="Released on" scrollType="horizontal"/>
   </main>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h1>About {{ details.title }}</h1>
+    <h1>Details about {{ details.title }}</h1>
     <DetailsCard :details="details"/>
   </main>
 </template>
@@ -20,7 +20,7 @@ export default {
   },
   created() {
     FilmService.getDetails(this.$route.params.id)
-    .then(reponse => { console.log(this.details = reponse.data) })
+    .then(reponse => { this.details = reponse.data })
     .catch(error => { console.log('Error' + error) })
   }
 }

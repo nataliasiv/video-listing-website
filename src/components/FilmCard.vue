@@ -7,7 +7,7 @@
         <h3>{{ film.title }}<span v-if="film.original_language">({{ film.original_language }})</span></h3>
         <div class="card__rating" v-if="film.vote_average">
           <img :src="icon" alt="star" width="25" height="25">
-          <p>{{ film.vote_average }} / 10</p>
+          <span>{{ film.vote_average }} / 10</span>
         </div>
         <p v-if="film.overview">{{ film.overview }}</p>
         <p class="card__release-date" v-if="film.release_date">{{ releaseMessage }}: {{ film.release_date }}</p>
@@ -95,12 +95,12 @@ export default {
 
 .card__rating {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   margin-top: 1rem;
-  font-weight: 400;
 
-  img {
-    margin-right: 1rem;
+  span {
+    display: block;
+    font-weight: 400;
   }
 }
 
