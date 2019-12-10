@@ -1,34 +1,34 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '@/views/Home.vue'
-import AllListings from '@/views/AllListings.vue'
-import ListingDetails from '@/views/ListingDetails.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Home from "@/views/Home.vue";
+import AllListings from "@/views/AllListings.vue";
+import ListingDetails from "@/views/ListingDetails.vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: Home
-  },
-  {
-    path: '/all-listings',
-    name: 'all-listings',
-    component: AllListings
-  },
-  {
-    path: "/film-details/:id",
-    name: "listing-details",
-    component: ListingDetails,
-    params: true
-  }
-]
+	{
+		path: "/",
+		name: "home",
+		component: Home
+	},
+	{
+		path: "/all-listings",
+		name: "all-listings",
+		component: AllListings
+	},
+	{
+		path: "/film-details/:id",
+		name: "listing-details",
+		component: ListingDetails,
+		params: true
+	}
+];
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
-})
+	mode: "history",
+	base: process.env.BASE_URL,
+	routes
+});
 
-export default router
+export default router;

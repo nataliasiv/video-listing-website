@@ -1,10 +1,6 @@
 // Reset
 // Apart from using normalise.css to brigde the gap between different default browser styles, I also like to include a very simple CSS reset in my projects
-// Imported globally using style-resources-loader
 
-@import './variables';
-
-// TODO: Why is this importing 3 times?
 html {
     font-size: 10px; // Set up for rem, 10px = 1rem
 }
@@ -27,16 +23,6 @@ ul, ol {
 
 input {
     border: none;
-}
-  
-@each $heading in h1, h2, h3, h4, h5, h6 {
-    #{$heading } {
-        margin: 0;
-        font: {
-            weight: 400;
-            size: map-get($heading-sizes, $heading);
-        }
-    }
 }
 
 a {

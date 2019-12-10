@@ -1,111 +1,98 @@
 <template>
-  <div class="component">
-    <h2>{{ title }}</h2>
-    <section class="card" :scrollType="scrollType">
-      <router-link class="card__details" v-for="film in films" :key="film.id" :to="{name: 'listing-details', params: { id: film.id }}">
-        <Poster :posterPath="film.poster_path"/>
-        <h3>{{ film.title }}<span v-if="film.original_language">({{ film.original_language }})</span></h3>
-        <div class="card__rating" v-if="film.vote_average">
-          <img :src="icon" alt="star" width="25" height="25">
-          <span>{{ film.vote_average }} / 10</span>
-        </div>
-        <p v-if="film.overview">{{ film.overview }}</p>
-        <p class="card__release-date" v-if="film.release_date">{{ releaseMessage }}: {{ film.release_date }}</p>
-      </router-link>
-    </section>
-  </div>
+	<div class="component">
+		<h2>{{ title }}</h2>
+		<section class="film-cards" :scrollType="scrollType">
+			<router-link
+				class="film-card"
+				v-for="film in films"
+				:key="film.id"
+				:to="{name: 'listing-details', params: { id: film.id }}"
+			>
+				<Poster :posterPath="film.poster_path" />
+				<h3>{{ film.title }}</h3>
+				<FilmRating :rating="film.vote_average" />
+				<p
+					class="film-card__release-date"
+					v-if="film.release_date"
+				>{{ releaseMessage }}: {{ film.release_date }}</p>
+			</router-link>
+		</section>
+	</div>
 </template>
 
 <script>
-import Poster from '@/components/Poster.vue'
-import FilmService from '@/services/FilmService.js'
-import star from '@/assets/star.svg';
+import Poster from "@/components/Poster.vue";
+import FilmRating from "@/components/FilmRating.vue";
+import FilmService from "@/services/FilmService.js";
 
 export default {
-    components: {
-      Poster
-    },
-    data() {
-      return {
-        films: [],
-        icon: star
-      }
-    },
-    props: {
-      title: String,
-      releaseMessage: String,
-      scrollType: String,
-      sort: String
-    },
-    created() {
-      FilmService.getRecent()
-      .then(reponse => { this.films = reponse.data.results })
-      .catch(error => { console.log('Error' + error) })
-    }
-}
+	components: {
+		Poster,
+		FilmRating
+	},
+	data() {
+		return {
+			films: []
+		};
+	},
+	props: {
+		title: String,
+		releaseMessage: String,
+		scrollType: String,
+		sort: String
+	},
+	created() {
+		FilmService.getRecent()
+			.then(reponse => {
+				this.films = reponse.data.results;
+			})
+			.catch(error => {
+				console.log("Error" + error);
+			});
+	}
+};
 </script>
 
 <style lang="scss">
-.card[scrolltype="vertical"] {
-  @include base-grid(3rem, repeat(3, 1fr));
-  align-items: center;
+.film-cards {
 
-  .card__details {
-    align-self: flex-start;
-  }
-}
+	&[scrolltype="vertical"] {
+		@include base-grid(3rem, repeat(3, 1fr));
+		align-items: center;
 
-.card[scrolltype="horizontal"] {
-  @include min(tablet) {
-    display: flex;
-    overflow: scroll;
-    // Transforming the cards to get the scrollbar on top 
-    // (Makes the horizontal scroll a bit more user friendly)
-    transform:rotateX(180deg);
+		.film-card {
+			align-self: flex-start;
+		}
+	}
 
-    .card__details {
-      padding-right: 4rem;
-      min-width: 27rem;
-      transform:rotateX(180deg);
-    }
-  }
-}
+	&[scrolltype="horizontal"] {
 
-.component h2 {
-  @include min(tablet) {
-    margin-bottom: 1.5rem;
-  }
-}
+		@include min(tablet) {
+			display: flex;
+			overflow: scroll;
+			// Transforming the cards to get the scrollbar on top
+			// (Makes the horizontal scroll a bit more user friendly)
+			transform: rotateX(180deg);
 
-.card__details {
-  @include flex-direction(column);
+			.film-card {
+				padding-right: 4rem;
+				min-width: 27rem;
+				transform: rotateX(180deg);
+			}
+		}
+	}
 
-  span {
-    margin-left: .8rem;
-    font: {
-      size: 1.6rem;
-      weight: 300;
-    }
-  }
+	.film-card {
+	@include flex-direction(column);
 
-  h3 {
-    margin-top: 2rem;
-  }
-}
+		h3 {
+			margin-top: 2rem;
+		}
 
-.card__rating {
-  display: flex;
-  align-items: flex-end;
-  margin-top: 1rem;
-
-  span {
-    display: block;
-    font-weight: 400;
-  }
-}
-
-.card__release-date {
-  margin-top: $base-spacer;
-  color: $text-color-secondary;
+		&__release-date {
+			margin-top: 2rem;
+			color: $text-color-secondary;
+		}
+	}
 }
 </style>

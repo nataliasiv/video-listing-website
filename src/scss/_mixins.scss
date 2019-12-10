@@ -1,5 +1,5 @@
 // Base mixins
-// Imported globally using style-resources-loader
+// Imported globally with sass-loader
 
 @import './media-queries';
 
@@ -12,11 +12,6 @@
 @mixin flex-direction($flex-direction) {
     display: flex;
     flex-direction: $flex-direction;
-}
-  
-@mixin overflow($overflow-type, $overflow-value, $scrolling) {
-    #{$overflow-type}: $overflow-value;
-    -webkit-overflow-scrolling: $scrolling; // Not yet added by autoprefixer, for momentum scrolling on iOS
 }
 
 @mixin base-grid($grid-gap, $laptop-grid) {

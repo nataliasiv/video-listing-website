@@ -1,83 +1,105 @@
 <template>
-  <div id="app">
-    <Nav/>
-    <router-view/>
-    <Footer/>
-  </div>
+	<div id="app">
+		<Nav />
+		<router-view />
+		<Footer />
+	</div>
 </template>
 
 <script>
-import Nav from '@/components/Nav.vue';
-import Footer from '@/components/Footer.vue';
+import Nav from "@/components/Nav.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
-  components: {
-    Nav,
-    Footer
-  }
-}
+	components: {
+		Nav,
+		Footer
+	}
+};
 </script>
 
 <style lang="scss">
+// Import reset style
+@import "@/scss/_reset.scss";
+
 body {
-  color: $color-primary;
-  line-height: 1.5;
-  background: $bg-color-base;
-  font: {
-    family: 'Source Sans Pro', $fallback-fonts;
-    size: 1.6rem;
-    weight: 300;
-  }
+	color: $color-primary;
+	line-height: 1.6;
+	background: $bg-color-base;
+	font: {
+		family: "Source Sans Pro", $fallback-fonts;
+		size: 1.6rem;
+		weight: 300;
+	}
 
-  .component {
-    margin-top: 6rem;
-  }
+	@each $heading in h1, h2, h3, h4, h5, h6 {
+		#{$heading } {
+			margin: 0;
+			font: {
+				weight: 400;
+				size: map-get($heading-sizes, $heading);
+			}
+		}
+	}
 
-  main {
-    margin: $base-spacer*2 auto $base-spacer*3;
-    height: 100%;
-    width: 75%;
-    max-width: 144rem;
+	.component {
+		margin-top: 6rem;
 
-    a:not(.card__details) {
-      text-decoration: underline;
+		h2 {
+			@include min(tablet) {
+				margin-bottom: 1.5rem;
+			}
+		}
+	}
 
-      &:hover, &:active, &:focus {
-        color: $color-secondary;
-      }
-    }
+	main {
+		margin: 5rem auto 6rem;
+		width: 75%;
+		max-width: 144rem;
 
-    p {
-      margin: 1rem 0 0;
-    }
+		a:not(.film-card) {
+			text-decoration: underline;
 
-    .details__subtitle {
-      font-size: map-get($heading-sizes, h4);
-      color: $text-color-secondary;
-    }
+			&:hover,
+			&:active,
+			&:focus {
+				color: $color-secondary;
+			}
+		}
 
-    input[type=submit], button {
-      height: 6rem;
-      background: $color-primary;
-      color: white;
-      border-radius: .5rem;
-      padding: 2rem;
-      margin-left: .5rem;
-      transition: $base-transition;
-      font: {
-          weight: 400;
-          size: 1.6rem;
-      }
+		p {
+			margin: 1rem 0 0;
+		}
 
-      &:hover, &:focus {
-          background: $color-secondary;
-      }
+		.details__subtitle {
+			font-size: map-get($heading-sizes, h4);
+			color: $text-color-secondary;
+		}
 
-      @include max(mobile) {
-          width: 100%;
-          margin: 1rem 0 0;
-      }
-    }
-  }
+		input[type="submit"],
+		button {
+			height: 6rem;
+			background: $color-primary;
+			color: white;
+			border-radius: 0.5rem;
+			padding: 2rem;
+			margin-left: 0.5rem;
+			transition: $base-transition;
+			font: {
+				weight: 400;
+				size: 1.6rem;
+			}
+
+			&:hover,
+			&:focus {
+				background: $color-secondary;
+			}
+
+			@include max(mobile) {
+				width: 100%;
+				margin: 1rem 0 0;
+			}
+		}
+	}
 }
 </style>
