@@ -1,16 +1,16 @@
 <template>
 	<section class="details-card">
-		<WatchTrailer :video="film.videos" />
-		<Poster :posterPath="film.poster_path" />
+		<WatchTrailer :video="details.videos" />
+		<Poster :posterPath="details.poster_path" animate="animate"/>
 		<div class="details-card__details">
-			<h3>{{ film.title }}</h3>
-			<p class="details-card__subtitle details__subtitle" v-if="film.tagline">{{ film.tagline }}</p>
-			<div class="details-card__genre" v-if="film.genres">
-				<p v-for="genre in film.genres" :key="genre.key">{{ genre.name }}</p>
+			<h3>{{ details.title }}</h3>
+			<p class="details-card__subtitle details__subtitle" v-if="details.tagline">{{ details.tagline }}</p>
+			<div class="details-card__genre" v-if="details.genres">
+				<p v-for="genre in details.genres" :key="genre.key">{{ genre.name }}</p>
 			</div>
-			<p v-if="film.overview">{{ film.overview }}</p>
-			<FilmRating :rating="film.vote_average" />
-			<p v-if="film.release_date">Original release: {{ film.release_date }}</p>
+			<p v-if="details.overview">{{ details.overview }}</p>
+			<FilmRating :rating="details.vote_average" />
+			<p v-if="details.release_date">Original release: {{ details.release_date }}</p>
 		</div>
 	</section>
 </template>
@@ -27,7 +27,7 @@ export default {
 		WatchTrailer
 	},
 	props: {
-		film: Object
+		details: Object
 	}
 };
 </script>

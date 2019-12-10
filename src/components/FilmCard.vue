@@ -47,7 +47,7 @@ export default {
 				this.films = reponse.data.results;
 			})
 			.catch(error => {
-				console.log("Error" + error);
+				console.log(error);
 			});
 	}
 };

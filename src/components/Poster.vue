@@ -1,5 +1,5 @@
 <template>
-	<div class="poster">
+	<div class="poster" :animate="animate">
 		<!-- Decided to use the 500w posters here because the image is sharper -->
 		<!-- For a small-scale site like this one it shouldn't cause performance issues, but for larger sites I would consider other options (lazy loading or smaller images) -->
 		<img
@@ -27,11 +27,12 @@ import lens from "@/assets/lens.svg";
 export default {
 	data() {
 		return {
-			img: lens
+      img: lens,
 		};
 	},
 	props: {
-		posterPath: String
+    posterPath: String,
+    animate: String
 	}
 };
 </script>
@@ -46,7 +47,17 @@ export default {
 	overflow: hidden;
 	border-radius: $img-border-radius;
 	box-shadow: $base-box-shadow;
-	margin-top: 3rem;
+  margin-top: 3rem;
+  
+  &[animate="animate"] {
+    animation: squish .5s .5s 2;
+
+    @keyframes squish {
+      50% {
+        transform: rotateY(30deg) scale(.98);
+      }
+    }
+  }
 
 	img {
 		transition: $base-transition;
