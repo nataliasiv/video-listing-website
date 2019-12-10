@@ -47,17 +47,17 @@ export default {
 	overflow: hidden;
 	border-radius: $img-border-radius;
 	box-shadow: $base-box-shadow;
-  margin-top: 3rem;
-  
-  &[animate="animate"] {
-    animation: squish .5s .5s 2;
+	margin-top: 3rem;
+	
+	&[animate="animate"] {
+		animation: squish .5s .5s 2;
 
-    @keyframes squish {
-      50% {
-        transform: rotateY(30deg) scale(.98);
-      }
-    }
-  }
+		@keyframes squish {
+		50% {
+			transform: rotateY(30deg) scale(.98);
+		}
+		}
+	}
 
 	img {
 		transition: $base-transition;
